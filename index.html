@@ -64,7 +64,7 @@
       z-index: 1;
     }
 
-    /* ── CD ── */
+ 
     .cd-wrap { position: relative; }
 
     .cd {
@@ -186,7 +186,7 @@
     }
     .cd.spinning ~ .cd-reflect { opacity: 1; }
 
-    /* ── Track info ── */
+    
     .track-info {
       text-align: center;
       line-height: 1;
@@ -211,7 +211,7 @@
       text-transform: uppercase;
     }
 
-    /* ── Track counter ── */
+    
     .track-counter {
       font-size: 0.55rem;
       color: var(--muted);
@@ -220,7 +220,7 @@
       margin-top: 0.2rem;
     }
 
-    /* ── Progress ── */
+    
     .progress-row {
       display: flex;
       align-items: center;
@@ -250,7 +250,7 @@
       transition: width 0.2s linear;
     }
 
-    /* ── Controls ── */
+  
     .controls {
       display: flex;
       align-items: center;
@@ -289,7 +289,7 @@
     .btn-play svg { width: 22px; height: 22px; }
     .icon-pause { display: none; }
 
-    /* ── Volume ── */
+
     .vol-row {
       display: flex;
       align-items: center;
@@ -341,7 +341,7 @@
   <div class="glow" id="glow"></div>
   <div class="card">
 
-    <!-- CD -->
+   
     <div class="cd-wrap">
       <div class="cd" id="cd">
         <div class="cd-iris"></div>
@@ -354,39 +354,38 @@
       <div class="cd-reflect"></div>
     </div>
 
-    <!-- Info -->
+
     <div class="track-info">
       <div class="track-title" id="trackTitle">One Worded</div>
       <div class="track-artist" id="trackArtist">Miniscripter</div>
       <div class="track-counter" id="trackCounter">1 / 3</div>
     </div>
 
-    <!-- Progress -->
+
     <div class="progress-row">
       <span class="t" id="cur">0:00</span>
       <div class="bar" id="bar"><div class="bar-fill" id="fill"></div></div>
       <span class="t" id="dur">0:00</span>
     </div>
 
-    <!-- Controls -->
     <div class="controls">
-      <!-- Prev -->
+      
       <button class="btn btn-skip" id="prevBtn" title="Previous">
         <svg viewBox="0 0 24 24"><path d="M6 6h2v12H6zm3.5 6 8.5 6V6z"/></svg>
       </button>
 
-      <!-- Play/Pause -->
+  
       <button class="btn btn-play" id="playBtn" title="Play">
         <svg class="icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
         <svg class="icon-pause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
       </button>
 
-      <!-- Next -->
+     
       <button class="btn btn-skip" id="nextBtn" title="Next">
         <svg viewBox="0 0 24 24"><path d="M6 18l8.5-6L6 6v12zm2.5-6 5.5 4V8zM16 6h2v12h-2z"/></svg>
       </button>
 
-      <!-- Volume -->
+     
       <div class="vol-row">
         <svg viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02z"/></svg>
         <input type="range" id="vol" min="0" max="1" step="0.02" value="0.85" />
@@ -400,13 +399,13 @@
 <audio id="audio" preload="metadata"></audio>
 
 <script>
-  // ── Playlist — add/remove tracks here ──
+
   const TRACKS = [
     { file: 'track1.mp3', title: 'One Worded',        artist: 'Miniscripter' },
     { file: 'track2.mp3', title: 'INTERESTING ROADS',        artist: 'Miniscripter' },
   ];
 
-  // ── Elements ──
+ 
   const audio      = document.getElementById('audio');
   const playBtn    = document.getElementById('playBtn');
   const prevBtn    = document.getElementById('prevBtn');
@@ -469,10 +468,10 @@
     glow.classList.toggle('active', state);
   }
 
-  // Init
+
   loadTrack(0, false);
 
-  // Play/pause
+
   playBtn.addEventListener('click', () => {
     if (playing) {
       audio.pause();
@@ -496,7 +495,7 @@
   });
   audio.addEventListener('error', () => errMsg.style.display = 'block');
 
-  // Scrub
+  
   let scrubbing = false;
   function doScrub(e) {
     if (!audio.duration) return;
@@ -511,11 +510,11 @@
   document.addEventListener('mouseup',  () => scrubbing = false);
   document.addEventListener('touchend', () => scrubbing = false);
 
-  // Volume
+
   audio.volume = volSlider.value;
   volSlider.addEventListener('input', () => audio.volume = volSlider.value);
 
-  // Keyboard
+
   document.addEventListener('keydown', e => {
     if (e.key === ' ')           { e.preventDefault(); playBtn.click(); }
     if (e.key === 'ArrowRight')  nextBtn.click();
